@@ -8,6 +8,7 @@ def build_heap(data):
     # TO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
     n = len(data)
+    check = set()
     for i in range(n//2 - 1, -1, -1):
         swaps += sift_down(data, i, n, check)
     return swaps
