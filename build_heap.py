@@ -28,7 +28,7 @@ def build_heap(data):
 
 
 def main():
-    
+
     ##TO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
@@ -44,7 +44,7 @@ def main():
         data = list(map(int, input().split()))
 
     # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
+        assert len(data) == n
 
     # calls function to assess the data 
     # and give back all swaps
