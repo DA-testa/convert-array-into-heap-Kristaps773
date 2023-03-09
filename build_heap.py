@@ -7,7 +7,7 @@ def build_heap(data):
     # TO: Creat heap and heap sort
     # try to achieve  O(n) and not O(n2)
     n = len(data)
-    for i in range(n/2,-1,-1):
+    for i in range(n//2,-1,-1):
         j=i
         while True:
             mini = j
@@ -20,7 +20,7 @@ def build_heap(data):
             if j!=mini:
                 data[j], data[mini] = data[mini], data[j]
                 swaps.append(j, mini)
-                j =mini
+                j = mini
             else:
                 break
 
