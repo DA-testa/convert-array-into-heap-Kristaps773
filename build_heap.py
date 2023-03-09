@@ -9,24 +9,28 @@ def build_heap(data):
     # try to achieve O(n) and not O(n^2)
     n = len(data)
     for i in range(n//2 - 1, -1, -1):
-        swaps += sift_down(data, i, n)
+        swaps += sift_down(data, i, n, check)
     return swaps
 
-def sift_down(data, i, n):
+def sift_down(data, i, n, check):
     swaps = []
     mini = i
     leftChild = 2* i+1
     rightChild = 2*i+2
-    if leftChild < n and data[leftChild] < data[mini]:
+    if leftChild < n and data[leftChild] < data[mini] and leftChild not in check:
         mini = leftChild
 
-    if rightChild < n and data[rightChild] < data[mini]:
+    if rightChild < n and data[rightChild] < data[mini]and rightChild not in check:
         mini = rightChild
 
     if i != mini:
         data[i], data[mini] = data[mini], data[i]
         swaps.append((i, mini))
-        swaps += sift_down(data, mini, n)
+        check.add(i)
+        check.add(mini)
+        swaps += sift_down(data, mini, n,check)
+    else:
+        check.add(i)
     return swaps
 
 
