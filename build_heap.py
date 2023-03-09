@@ -14,16 +14,19 @@ def build_heap(data):
 
 def sift_down(data, i, n):
     swaps = []
-    while 2*i+1 < n:
-        j = 2*i+1
-        if j+1 < n and data[j+1] < data[j]:
-            j = j+1
-        if data[i] > data[j]:
-            data[i], data[j] = data[j], data[i]
-            swaps.append((i, j))
-            i = j
-        else:
-            break
+    mini = i
+    leftChild = 2* i+1
+    rightChild = 2*i+2
+    if leftChild < n and data[leftChild] < data[mini]:
+        mini = leftChild
+
+    if rightChild < n and data[rightChild] < data[mini]:
+        mini = rightChild
+
+    if i != mini:
+        data[i], data[mini] = data[mini], data[i]
+        swaps.append((i, mini))
+        swaps += sift_down(data, mini, n)
     return swaps
 
 
