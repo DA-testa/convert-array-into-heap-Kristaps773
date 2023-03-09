@@ -1,4 +1,4 @@
-#Krists Kristaps Dūda 221RDB518 10.grupa
+ #Krists Kristaps Dūda 221RDB518 10.grupa
 # python3
 
 
@@ -8,30 +8,25 @@ def build_heap(data):
     # TO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
     n = len(data)
-    check = set()
     for i in range(n//2 - 1, -1, -1):
-        swaps += sift_down(data, i, n, check)
+        swaps += sift_down(data, i, n)
     return swaps
 
-def sift_down(data, i, n, check):
+def sift_down(data, i, n):
     swaps = []
     mini = i
     leftChild = 2* i+1
     rightChild = 2*i+2
-    if leftChild < n and data[leftChild] < data[mini] and leftChild not in check:
+    if leftChild < n and data[leftChild] < data[mini]:
         mini = leftChild
 
-    if rightChild < n and data[rightChild] < data[mini]and rightChild not in check:
+    if rightChild < n and data[rightChild] < data[mini]:
         mini = rightChild
 
     if i != mini:
         data[i], data[mini] = data[mini], data[i]
         swaps.append((i, mini))
-        check.add(i)
-        check.add(mini)
-        swaps += sift_down(data, mini, n,check)
-    else:
-        check.add(i)
+        swaps += sift_down(data, mini, n)
     return swaps
 
 
@@ -43,6 +38,7 @@ def main():
     input1 = input()
     if 'F' in input1:
         file = input()
+        file = "test/" + file
         try:
             with open(file, mode = "r") as f:
                     n = int(f.readline())
