@@ -19,7 +19,7 @@ def build_heap(data):
                 mini = rightChild
             if j!=mini:
                 data[j], data[mini] = data[mini], data[j]
-                swaps.append(j, mini)
+                swaps.append((j, mini))
                 j = mini
             else:
                 break
