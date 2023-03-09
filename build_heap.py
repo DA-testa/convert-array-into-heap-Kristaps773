@@ -32,7 +32,7 @@ def main():
     ##TO : add input and corresponding checks
     # add another input for I or F 
     # first two tests are from keyboard, third test is from a file
-    input1 = input("Enter 'i' to input from keyboard, 'f' to input from file: ")
+    input1 = input()
     if input1.lower() == 'f':
         filename = input("File path: ")
         with open(f'{filename}') as f:
