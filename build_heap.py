@@ -19,7 +19,7 @@ def build_heap(data):
             if leftChild<size and data[leftChild]<data[mini]:
                 mini = leftChild
             if mini !=j:
-                swaps.((j, mini))
+                swaps.append((j, mini))
                 data[j], data[mini] = data[mini], data[j]
                 j = mini
             else:
