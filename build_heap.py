@@ -8,16 +8,22 @@ def build_heap(data):
     size = len(data)
     # TODO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
-    for i in range(size - 1, -1, -1):
-        while 2 * i+ 1 < size:
-            j = 2 * i + 1
-            if j+1 < size and data[j + 1] < data[j]:
-                j = j + 1
-            if data[i] <= data[j]:
+    for i in range(size//2, -1, -1):
+        j=i
+        while True:
+            rightChild = j*2+2
+            leftChild = 2*2+1
+            mini = j
+            if rightChild<size and data[rightChild]<data[mini]:
+                mini = rightChild
+            if leftChild<size and data[leftChild]<data[mini]:
+                mini = leftChild
+            if mini !=j:
+                swaps.((j, mini))
+                data[j], data[mini] = data[mini], data[j]
+                j = mini
+            else:
                 break
-            swaps.append((i, j))
-            data[i], data[j] = data[j], data[i]
-            i = j
     return swaps
 
 
@@ -35,39 +41,32 @@ def main():
             with open(file, mode = "r") as f:
                     n = int(f.readline())
                     data = list(map(int, f.readline().split()))
-                    swaps = build_heap(data)
-                    print(len(swaps))
-                    for i, j in swaps:
-                        print(i, j)
+                    assert len(data) == n
         except FileNotFoundError:
             return
         
     elif 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
-        swaps = build_heap(data)
-        print(len(swaps))
-        for i, j in swaps:
-            print(i, j)
+        assert len(data) == n
     else:
         return
     
 
     # checks if lenght of data is the same as the said lenght
-    assert len(data) == n
+    #assert len(data) == n
     
     # calls function to assess the data,
     # and give back all swaps
-    #swaps = build_heap(data)
+    swaps = build_heap(data)
 
     ##T: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
-
     # output all swaps
-    #print(len(swaps))
-    #for i, j in swaps:
-    #    print(i, j)
+    print(len(swaps))
+    for i, j in swaps:
+        print(i, j)
 
 
 if __name__ == "__main__":
