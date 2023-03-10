@@ -1,4 +1,4 @@
- #Krists Kristaps Dūda 221RDB518 10.grupa
+#Krists Kristaps Dūda 221RDB518 10.grupa
 # python3
 
 
@@ -6,22 +6,27 @@
 def build_heap(data):
     swaps = []
     n = len(data)
-    for i in range(n // 2, -1, -1):
-        j = i
-        while True:
-            rightChild = j * 2 + 2
-            leftChild = j * 2 + 1
-            mini = j
-            if rightChild < n and data[rightChild] < data[mini]:
-                mini = rightChild
-            if leftChild < n and data[leftChild] < data[mini]:
-                mini = leftChild
-            if mini != j:
-                swaps.append((j, mini))
-                data[j], data[mini] = data[mini], data[j]
-                j = mini
-            else:
-                break
+    for i in range(n // 2 - 1, -1, -1):
+        swaps += sift_down(data, i, n)
+    return swaps
+
+
+def sift_down(data, i, n):
+    swaps = []
+    while True:
+        mini = i
+        leftChild = 2 * i + 1
+        rightChild = 2 * i + 2
+        if leftChild < n and data[leftChild] < data[mini]:
+            mini = leftChild
+        if rightChild < n and data[rightChild] < data[mini]:
+            mini = rightChild
+        if i != mini:
+            data[i], data[mini] = data[mini], data[i]
+            swaps.append((i, mini))
+            i = mini
+        else:
+            break
     return swaps
 
 
@@ -32,35 +37,28 @@ def main():
         file = input()
         file = "tests/" + file
         try:
-            with open(file, mode="r") as f:
-                n = int(f.readline())
-                data = list(map(int, f.readline().split()))
-                assert len(data) == n
+            with open(file, mode = "r") as f:
+                    n = int(f.readline())
+                    data = list(map(int, f.readline().split()))
+                    swaps = build_heap(data)
+                    print(len(swaps))
+                    for i, j in swaps:
+                        print(i, j)
         except FileNotFoundError:
             return
         
-    elif 'I' in input1:
+    if 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
+        swaps = build_heap(data)
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
     else:
         return
     
 
-    # checks if lenght of data is the same as the said lenght
-    #assert len(data) == n
-    
-    # calls function to assess the data,
-    # and give back all swaps
-    swaps = build_heap(data)
-
-    ##T: output how many swaps were made, 
-    # this number should be less than 4n (less than 4*len(data))
-    
-
-    # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    assert len(data) == n
 
 
 if __name__ == "__main__":
