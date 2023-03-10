@@ -12,7 +12,7 @@ def build_heap(data):
         j=i
         while True:
             rightChild = j*2+2
-            leftChild = 2*2+1
+            leftChild = j*2+1
             mini = j
             if rightChild<size and data[rightChild]<data[leftChild]:
                 mini = rightChild
@@ -33,19 +33,15 @@ def main():
     input1 = input()
     if 'F' in input1:
         file = input()
-        file = "test/" + file
         try:
-            with open(file, mode = "r") as f:
-                    n = int(f.readline())
-                    data = list(map(int, f.readline().split()))
-
+            with open(file, mode="r") as f:
+                n = int(f.readline())
+                data = list(map(int, f.readline().split()))
         except FileNotFoundError:
             return
-        
     elif 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
-
     else:
         return
     
