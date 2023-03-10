@@ -40,7 +40,7 @@ def main():
     input1 = input()
     if 'F' in input1:
         file = input()
-        file = "test/" + file
+        file = "tests/" + file
         try:
             with open(file, mode = "r") as f:
                     n = int(f.readline())
