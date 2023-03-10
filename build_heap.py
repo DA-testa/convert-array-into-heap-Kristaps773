@@ -9,11 +9,11 @@ def build_heap(data):
     for i in range(n // 2, -1, -1):
         j = i
         while True:
-            tightChild = j * 2 + 2
+            rightChild = j * 2 + 2
             leftChild = j * 2 + 1
             mini = j
-            if tightChild < n and data[tightChild] < data[mini]:
-                mini = tightChild
+            if rightChild < n and data[rightChild] < data[mini]:
+                mini = rightChild
             if leftChild < n and data[leftChild] < data[mini]:
                 mini = leftChild
             if mini != j:
@@ -31,18 +31,17 @@ def main():
     if 'F' in input1:
         file = input()
         file = "tests/" + file
-        try:
-            with open(file, mode="r") as f:
-                n = int(f.readline())
-                data = list(map(int, f.readline().split()))
-                assert len(data) == n
-        except FileNotFoundError:
-            return
+        #try:
+        with open(file, mode="r") as f:
+            n = int(f.readline())
+            data = list(map(int, f.readline().split()))
+            assert len(data) == n
+        #except FileNotFoundError:
+        #    return
         
-    if 'I' in input1:
+    elif 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
-        assert len(data) == n
     else:
         return
     
