@@ -31,13 +31,13 @@ def main():
     if 'F' in input1:
         file = input()
         file = "tests/" + file
-        #try:
-        with open(file, mode="r") as f:
-            n = int(f.readline())
-            data = list(map(int, f.readline().split()))
-            assert len(data) == n
-        #except FileNotFoundError:
-        #    return
+        try:
+            with open(file, mode="r") as f:
+                n = int(f.readline())
+                data = list(map(int, f.readline().split()))
+                assert len(data) == n
+        except FileNotFoundError:
+            return
         
     elif 'I' in input1:
         n = int(input())
