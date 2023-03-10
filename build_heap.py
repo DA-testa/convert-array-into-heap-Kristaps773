@@ -1,4 +1,4 @@
- #Krists Kristaps Dūda 221RDB518 10.grupa
+#Krists Kristaps Dūda 221RDB518 10.grupa
 # python3
 
 
@@ -7,27 +7,25 @@ def build_heap(data):
     swaps = []
     # TO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
-    n = len(data)
-    for i in range(n//2 - 1, -1, -1):
-        swaps += sift_down(data, i, n)
+    size = len(data)
+    for i in range(size//2, -1, -1):
+        sift_down(data, i, swaps)
     return swaps
 
-def sift_down(data, i, n):
-    swaps = []
+
+def sift_down(data, i, swaps):
+    size = len(data)
     mini = i
-    leftChild = 2* i+1
-    rightChild = 2*i+2
-    if leftChild < n and data[leftChild] < data[mini]:
+    leftChild = 2*i + 1
+    if leftChild < size and data[leftChild] < data[mini]:
         mini = leftChild
-
-    if rightChild < n and data[rightChild] < data[mini]:
+    rightChild = 2*i + 2
+    if rightChild < size and data[rightChild] < data[mini]:
         mini = rightChild
-
     if i != mini:
-        data[i], data[mini] = data[mini], data[i]
         swaps.append((i, mini))
-        swaps += sift_down(data, mini, n)
-    return swaps
+        data[i], data[mini] = data[mini], data[i]
+        sift_down(data, mini, swaps)
 
 
 def main():
