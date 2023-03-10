@@ -12,7 +12,7 @@ def build_heap(data):
         j=i
         while True:
             rightChild = j*2+2
-            leftChild = j*2+1
+            leftChild = 2*2+1
             mini = j
             if rightChild<size and data[rightChild]<data[leftChild]:
                 mini = rightChild
@@ -31,19 +31,21 @@ def main():
     # add another input for leftjor F 
     # first two tests are from keyboard, third test is from a file
     input1 = input()
-    if 'I' in input1:
-        n = int(input())
-        data = list(map(int, input().split()))
     if 'F' in input1:
         file = input()
-        #file = "test/" + file
+        file = "test/" + file
         try:
             with open(file, mode = "r") as f:
                     n = int(f.readline())
                     data = list(map(int, f.readline().split()))
-                    assert len(data) == n
+
         except FileNotFoundError:
-            return  
+            return
+        
+    elif 'I' in input1:
+        n = int(input())
+        data = list(map(int, input().split()))
+
     else:
         return
     
