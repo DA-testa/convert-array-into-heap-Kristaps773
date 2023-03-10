@@ -1,4 +1,4 @@
-#Krists Kristaps Dūda 221RDB518 10.grupa
+ #Krists Kristaps Dūda 221RDB518 10.grupa
 # python3
 
 
@@ -8,30 +8,22 @@ def build_heap(data):
     # TO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
     size = len(data)
-    for i in range(size//2, -1, -1):
-        sift_down(data, i, swaps)
+    for parent in range(size // 2, -1, -1):
+        while 2 * parent + 1 < size:
+            leftChild = 2 * parent + 1
+            rightChild = leftChild + 1 if leftChild + 1 < size and data[leftChild + 1] < data[leftChild] else leftChild
+            if data[parent] <= data[rightChild]:
+                break
+            swaps.append((parent, rightChild))
+            data[parent], data[rightChild] = data[rightChild], data[parent]
     return swaps
 
-
-def sift_down(data, i, swaps):
-    size = len(data)
-    mini = i
-    leftChild = 2*i + 1
-    if leftChild < size and data[leftChild] < data[mini]:
-        mini = leftChild
-    rightChild = 2*i + 2
-    if rightChild < size and data[rightChild] < data[mini]:
-        mini = rightChild
-    if i != mini:
-        swaps.append((i, mini))
-        data[i], data[mini] = data[mini], data[i]
-        sift_down(data, mini, swaps)
 
 
 def main():
 
     ##TO : add input and corresponding checks
-    # add another input for I or F 
+    # add another input for leftChildor F 
     # first two tests are from keyboard, third test is from a file
     input1 = input()
     if 'F' in input1:
