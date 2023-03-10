@@ -16,9 +16,7 @@ def build_heap(data):
             if data[i] <= data[j]:
                 break
             swaps.append((i, j))
-            temp = data[i]
-            data[i] = data[j]
-            data[j] = temp
+            data[i], data[j] = data[j], data[i]
             i = j
     return swaps
 
@@ -44,7 +42,7 @@ def main():
         except FileNotFoundError:
             return
         
-    if 'I' in input1:
+    elif 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
         swaps = build_heap(data)
