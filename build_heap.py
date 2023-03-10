@@ -14,7 +14,7 @@ def build_heap(data):
             rightChild = j*2+2
             leftChild = j*2+1
             mini = j
-            if rightChild<size and data[rightChild]<data[leftChild]:
+            if rightChild<size and data[rightChild]<data[mini]:
                 mini = rightChild
             if data[j] <= data[mini]:
                 break
