@@ -19,7 +19,7 @@ def build_heap(data):
             if leftChild<size and data[leftChild]<data[mini]:
                 mini = leftChild
             if mini !=j:
-                swaps.append((j, mini))
+                swaps.((j, mini))
                 data[j], data[mini] = data[mini], data[j]
                 j = mini
             else:
@@ -41,32 +41,39 @@ def main():
             with open(file, mode = "r") as f:
                     n = int(f.readline())
                     data = list(map(int, f.readline().split()))
-                    assert len(data) == n
+                    swaps = build_heap(data)
+                    print(len(swaps))
+                    for i, j in swaps:
+                        print(i, j)
         except FileNotFoundError:
             return
         
     elif 'I' in input1:
         n = int(input())
         data = list(map(int, input().split()))
-        assert len(data) == n
+        swaps = build_heap(data)
+        print(len(swaps))
+        for i, j in swaps:
+            print(i, j)
     else:
         return
     
 
     # checks if lenght of data is the same as the said lenght
-    #assert len(data) == n
+    assert len(data) == n
     
     # calls function to assess the data,
     # and give back all swaps
-    swaps = build_heap(data)
+    #swaps = build_heap(data)
 
     ##T: output how many swaps were made, 
     # this number should be less than 4n (less than 4*len(data))
 
+
     # output all swaps
-    print(len(swaps))
-    for i, j in swaps:
-        print(i, j)
+    #print(len(swaps))
+    #for i, j in swaps:
+    #    print(i, j)
 
 
 if __name__ == "__main__":
