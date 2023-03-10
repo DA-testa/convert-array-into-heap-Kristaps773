@@ -8,18 +8,18 @@ def build_heap(data):
     size = len(data)
     # TODO: Create heap and heap sort
     # try to achieve O(n) and not O(n^2)
-    for parent in range(size - 1, -1, -1):
-        while 2 * parent+ 1 < size:
-            Child = 2 * parent + 1
-            if Child+1 < size and data[Child + 1] < data[Child]:
-                Child = Child + 1
-            if data[parent] <= data[Child]:
+    for i in range(size - 1, -1, -1):
+        while 2 * i+ 1 < size:
+            j = 2 * i + 1
+            if j+1 < size and data[j + 1] < data[j]:
+                j = j + 1
+            if data[i] <= data[j]:
                 break
-            swaps.append((parent, Child))
-            temp = data[parent]
-            data[parent] = data[Child]
-            data[Child] = temp
-            parent = Child
+            swaps.append((i, j))
+            temp = data[i]
+            data[i] = data[j]
+            data[j] = temp
+            i = j
     return swaps
 
 
@@ -27,7 +27,7 @@ def build_heap(data):
 def main():
 
     ##TO : add input and corresponding checks
-    # add another input for leftChildor F 
+    # add another input for leftjor F 
     # first two tests are from keyboard, third test is from a file
     input1 = input()
     if 'F' in input1:
